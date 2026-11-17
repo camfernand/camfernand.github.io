@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Interactive accounting and automation workflow demos using fictional data. No downloads or installation needed.">
+<title>Interactive demos | Cameron Fernandez</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="demo.css">
+<script defer src="demo.js"></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap">
+<a href="../" class="brand" aria-label="Cameron Fernandez portfolio home"><span class="brand-icon">CF<span class="brand-dot">.</span></span><span class="brand-name">CAMERON<br>FERNANDEZ</span></a>
+<nav class="lab-top-nav" aria-label="Portfolio navigation"><a href="../#projects">All projects</a><a href="../#experience">Experience</a></nav>
+</div></header>
+<main id="main">
+<section class="container lab-hero">
+<p class="lab-eyebrow">INTERACTIVE WORKFLOW LAB / FOUR DEMOS</p>
+<h1>See the <em>systems thinking</em> in action.</h1>
+<p class="lab-lead">Explore working, simplified browser simulations of the accounting workflows behind my automation projects. Pick a scenario, run a validation, and inspect the results. Every name, amount, invoice and part is fictional.</p>
+<div class="lab-note"><strong>No download. No sign-in. No uploads.</strong> Everything runs locally in your browser using fictional examples. No ERP or real documents are accessed.</div>
+<nav class="lab-jump" aria-label="Jump to an interactive demo">
+<a href="#bom-workcenter"><span>01</span> Work-center BOM imports</a>
+<a href="#bom-normalizer"><span>02</span> BOM normalizer</a>
+<a href="#ar-aging"><span>03</span> AR aging</a>
+<a href="#ap-renamer"><span>04</span> AP invoice renamer</a>
+</nav>
+</section>
+<div class="container lab-stack">
+<section id="bom-workcenter" class="lab-panel" aria-labelledby="bom-title">
+<div class="lab-heading"><div><span class="lab-index">DEMO 01 / ERP OPERATIONS</span><h2 id="bom-title">Work-center BOM import preparation</h2><p>Replace manual line-by-line work-center entry with prevalidated import batches and an ERP review handoff.</p></div><a class="lab-case-link" href="../projects/bom-automation.html">Read the case study ↗</a></div>
+<div class="lab-work">
+<div class="lab-toolbar"><label for="bom-scenario">Choose a fictional drawing</label><select id="bom-scenario">
+<option value="clean">Complete fabrication BOM</option><option value="missing-wc">Missing work-center assignment</option><option value="unknown">Unverified inventory ID</option><option value="invalid-qty">Invalid quantity</option></select><button type="button" id="run-bom" class="lab-action">Validate &amp; preview imports</button></div>
+<div id="bom-results" class="lab-results" aria-live="polite"></div>
+</div>
+<p class="lab-footnote">This browser model demonstrates validation and grouping; it does not parse engineering PDFs or create an Acumatica-ready file. Actual ERP upload and confirmation remain human-controlled.</p>
+</section>
+<section id="bom-normalizer" class="lab-panel" aria-labelledby="norm-title">
+<div class="lab-heading"><div><span class="lab-index">DEMO 02 / DATA INTEGRITY</span><h2 id="norm-title">BOM normalization</h2><p>Convert fractional stock lengths into numeric extended quantities and flag lines that need review.</p></div><a class="lab-case-link" href="../projects/bom-automation.html">Read the case study ↗</a></div>
+<div class="lab-work"><label for="norm-input">Edit fictional parts — one line per part: Inventory ID, quantity, length</label>
+<textarea id="norm-input" rows="5" spellcheck="false">PLATE-101,2,3 1/2
+BAR-205,4,2 1/4
+ANGLE-310,3,1/2
+TUBE-444,2,not-a-length</textarea>
+<div class="lab-toolbar"><button type="button" id="run-norm" class="lab-action">Normalize sample lines</button><button type="button" id="reset-norm" class="lab-secondary">Restore sample</button></div><div id="norm-results" class="lab-results" aria-live="polite"></div></div>
+<p class="lab-footnote">The simplified CSV-style input intentionally omits PDF geometry extraction, drawing classification, and the production system's complete validation controls.</p>
+</section>
+<section id="ar-aging" class="lab-panel" aria-labelledby="ar-title">
+<div class="lab-heading"><div><span class="lab-index">DEMO 03 / RECEIVABLES</span><h2 id="ar-title">Accounts receivable aging</h2><p>Explore how a reporting date changes overdue balances and prioritization.</p></div><a class="lab-case-link" href="../projects/ap-ar-automation.html">Read the case study ↗</a></div>
+<div class="lab-work"><div class="lab-toolbar"><label for="ar-date">As-of date</label><input id="ar-date" type="date" value="2026-11-17" min="2026-01-01" max="2027-12-31"><button type="button" id="run-ar" class="lab-action">Recalculate aging</button></div><div id="ar-results" class="lab-results" aria-live="polite"></div></div>
+<p class="lab-footnote">Illustrative open balances only; this is not an actual receivables ledger or a live ERP report.</p>
+</section>
+<section id="ap-renamer" class="lab-panel" aria-labelledby="ap-title">
+<div class="lab-heading"><div><span class="lab-index">DEMO 04 / ACCOUNTS PAYABLE</span><h2 id="ap-title">Invoice naming &amp; exception routing</h2><p>Follow fictional invoice metadata through standardized naming, duplicate detection, and manual review.</p></div><a class="lab-case-link" href="../projects/ap-invoice-renamer.html">Read the case study ↗</a></div>
+<div class="lab-work"><div class="lab-toolbar"><label for="ap-scenario">Example AP inbox</label><select id="ap-scenario"><option value="mixed">Mixed invoice day</option><option value="clean">Straight-through examples</option><option value="exceptions">Exceptions &amp; reissued invoices</option></select><button type="button" id="run-ap" class="lab-action">Process fictional inbox</button></div><div id="ap-results" class="lab-results" aria-live="polite"></div></div>
+<p class="lab-footnote">This simulation starts with mock extracted metadata. It does not open or OCR PDFs, print documents, or access real vendor files.</p>
+</section>
+</div>
+<section class="container lab-end"><h2>From prototype to controlled process</h2><p>The common design principle is simple: automate repeatable preparation, validate information before handoff, and preserve clear exception paths for human judgment.</p><a href="../#projects" class="lab-action lab-end-link">Back to all case studies ↗</a></section>
+</main>
+<footer class="footer"><div class="container footer-inner"><a href="../" class="footer-logo">CF<span>.</span></a><div>© 2026 Cameron Fernandez. Synthetic demonstrations only.</div><a href="#main" class="back-top">Back to top ↑</a></div></footer>
+</body></html>
