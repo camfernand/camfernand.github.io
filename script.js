@@ -16,6 +16,8 @@ if (menuButton && mainNav) {
 
 const filters = Array.from(document.querySelectorAll('[data-filter]'));
 const projects = Array.from(document.querySelectorAll('[data-categories]'));
+const projectTotal = projects.length;
+const featuredTotal = projects.filter(card => (card.dataset.categories || '').split(/\s+/).includes('featured')).length;
 const moreButton = document.getElementById('project-view-more');
 const projectCount = document.getElementById('project-count');
 let currentFilter = 'featured';
@@ -36,17 +38,17 @@ function applyProjectFilter(selected) {
   });
   if (projectCount) {
     projectCount.textContent = selected === 'featured'
-      ? 'Showing 7 featured projects of 16'
+      ? 'Showing ' + featuredTotal + ' featured projects of ' + projectTotal
       : selected === 'all'
-        ? 'Showing all 16 projects'
+        ? 'Showing all ' + projectTotal + ' projects'
         : 'Showing ' + visible + ' ' + selected + ' project' + (visible === 1 ? '' : 's');
     projectCount.hidden = false;
   }
   if (moreButton) {
     moreButton.hidden = !(selected === 'featured' || selected === 'all');
     moreButton.innerHTML = selected === 'featured'
-      ? 'View all 16 projects <span aria-hidden="true">↓</span>'
-      : 'Show 7 featured projects <span aria-hidden="true">↑</span>';
+      ? 'View all ' + projectTotal + ' projects <span aria-hidden="true">↓</span>'
+      : 'Show ' + featuredTotal + ' featured projects <span aria-hidden="true">↑</span>';
     moreButton.setAttribute('aria-expanded', String(selected === 'all'));
   }
 }
